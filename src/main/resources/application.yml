@@ -7,8 +7,4 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-foo:
-  bar: hello
-  baz:
-    a: 1
-    b: 2
+

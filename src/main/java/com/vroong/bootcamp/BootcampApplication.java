@@ -6,7 +6,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 
 @SpringBootApplication
-@EnableConfigurationProperties(CustomProperties.class)
 public class BootcampApplication {
 
 	public static void main(String[] args) {

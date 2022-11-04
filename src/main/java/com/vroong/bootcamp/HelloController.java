@@ -1,28 +1,19 @@
 package com.vroong.bootcamp;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.event.EventListener;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Slf4j
+@RequiredArgsConstructor
 public class HelloController {
 
-    ApplicationEventPublisher publisher;
+    private final HelloService service;
 
-    public HelloController(ApplicationEventPublisher publisher) {
-        this.publisher = publisher;
-    }
-
-    @GetMapping("/event")
-    public void event() {
-        publisher.publishEvent(new CustomEvent("hello"));
-    }
-
-    @EventListener
-    public void handle(CustomEvent event) {
-        log.info("Event received: {}", event.getValue());
+    @GetMapping("/hello-async")
+    public ResponseEntity<Void> helloAsync() {
+        service.sayHello();
+        return ResponseEntity.accepted().build();
     }
 }
